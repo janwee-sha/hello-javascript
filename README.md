@@ -156,13 +156,13 @@ BOM的常见范畴：
 
 HTML 4.0为`<script>`元素定义了`defer`属性。这个属性表示脚本在执行的时候不会改变页面的结构。脚本会被延迟到整个页面都解析完毕后再执行。该属性只对外部脚本文件才有效。
 
-点击[这里](https://note.youdao.com/)查看示例代码。
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter2/DeferredScripts)查看示例代码。
 
 ### Asynchronous Scripts
 
 HTML5为`<script>`元素定义了`async`属性。标记`async`的外部脚本会立即开始下载，但不保证能按照它们出现的次序执行。
 
-点击[这里](https://note.youdao.com/)查看示例代码。
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter2/AsyncronousScripts)查看示例代码。
 
 ### Dynamic Script Loading
 
@@ -176,7 +176,7 @@ HTML5为`<script>`元素定义了`async`属性。标记`async`的外部脚本会
 <link rel="preload" href="source.js">
 ```
 
-点击[这里](https://note.youdao.com/)查看示例代码。
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter2/DynamicScriptLoading)查看示例代码。
 
 ## Document Mode
 
@@ -203,7 +203,7 @@ IE初次支持文档模式切换以后，随着其他浏览器的普遍实现而
 - 浏览器不支持脚本；
 - 浏览器对脚本的支持被关闭。
 
-点击[这里](https://note.youdao.com/)查看示例代码。
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter2/NoScript)查看示例代码。
 
 # 3. Language Basics
 
