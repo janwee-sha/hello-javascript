@@ -1,0 +1,1 @@
+window.alert('Message from asyncscript2.js');

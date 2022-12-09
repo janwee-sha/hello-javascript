@@ -1,0 +1,1 @@
+window.alert('Message from outer JavaScript');
