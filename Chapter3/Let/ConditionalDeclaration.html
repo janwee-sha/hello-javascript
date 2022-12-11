@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+</head>
+
+<body>
+</body>
+<script>
+    let job = "scientist";
+    let name = "Hari Sheldon";
+    let age = 29;
+</script>
+<script>
+    // let job = "detective"; //如果age之前声明过，这里会报错
+    console.log(job);
+
+    if (typeof name === 'undefined') {
+        let name;
+        console.log("name redefined");
+    }//name被限制在if{}块的作用域内，因此这个赋值形同全局赋值
+
+    try {
+        console.log(age); //如果age没有声明过，则会报错
+    } catch (error) {
+        let age;
+    }//age被限制在catch{}块的作用域内，因此这个赋值形同全局赋值
+</script>
+
+</html>
