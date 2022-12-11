@@ -256,3 +256,98 @@ if(test) {
 ## Variables
 
 ECMAScript变量是松散类型的，意思是变量可以用于保存任何类型的数据。每个表变量只不过是一个用于保存任意值的命名占位符。
+
+声明变量的3个关键字：`var`、`const`和`let`。
+
+### The 'var' Keyword
+
+`var`操作符定义变量的方式：
+
+```
+var message; //定义一个名为message的变量，可保存任何类型的值，此时变量值为特殊值undefined
+```
+```
+var message = "hi"; //message被定义为一个保存字符串hi的变量
+```
+
+```
+var message;
+message = "hi"; //合法，但不推荐
+```
+
+**1. var声明作用域**
+
+使用`var`在一个函数内部定义一个变量，该变量将在函数退出时被销毁：
+
+```
+function test() {
+    var message = "hi"; //局部变量
+}
+test();
+console.log(message); //出错
+```
+
+但在函数内定义变量时省略 `var` 操作符，可以创建一个全局变量：
+
+```
+function test() {
+    message = "hi"; //全局变量
+}
+test();
+console.log(message); //输出hi
+```
+
+定义多个变量：
+
+```
+var name = "Hari Seldon", found = false, age = 29;
+```
+
+**2. var声明提升**
+
+在调用 `var` 变量的代码之后声明该 `var` 变量时，代码可以正常运行。因为使用这个关键字声明的变量会自动提升到函数作用域顶部。
+
+另外，反复多次使用 `var` 声明同一个变量也没有问题。
+
+### 'let' Declarations
+
+`let` 跟 `var` 的作用差不多，但有着非常重要的区别。
+
+最明显的区别是， `let` 声明的范围是块作用域，而 `var` 声明的范围是函数作用域。
+
+```
+if (true) {
+    let name = "Hari Sheldon";
+    console.log(name); //Hari Sheldon
+}
+console.log(name); //ReferenceError: name undifined
+```
+
+`let` 不允许同一块作用域中出现冗余声明。
+
+同一函数内的不同块中可以重复声明 `let` 变量。
+
+**1. 暂时性死区**
+
+`let` 声明的变量不会再作用域中被提升。
+
+在解析代码时，JavaScript引擎也会注意出现在块后面的 `let` 声明，只不过在此前不能以任何方式来引用未引用的变量。在 `let` 声明之前的执行瞬间被称为“暂时性死区”，在此阶段引用任何后面才声明的变量都会抛出ReferenceError。
+
+**2. 全局声明**
+
+有别于 `var` 关键字，使用 `let` 在全局作用域中声明的变量不会成为 `window` 对象的属性。
+
+```
+var age = 29;
+console.log(window.age); //29
+
+let job = "scientist";
+console.log(window.scientist); //undefined
+```
+
+但 `let` 声明仍然是在全局作用域中发生的，相应变量会在页面的生命周期内存续。
+
+**3. 条件声明**
+
+
+### 'const' Declarations

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+</head>
+
+<body>
+    <p id="let1"></p>
+    <p id="var2"></p>
+    <p id="var3"></p>
+</body>
+<script>
+    if (true) {
+        let name = "Hari Sheldon";
+        console.log(name); //Hari Sheldon
+    }
+    console.log(name); //ReferenceError: name undifined
+
+    var age = 29;
+    console.log(window.age); //29
+
+    let job = "scientist";
+    console.log(window.scientist); //undefined
+</script>
+
+</html>
