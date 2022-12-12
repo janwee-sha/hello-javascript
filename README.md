@@ -277,31 +277,11 @@ message = "hi"; //合法，但不推荐
 
 **1. var声明作用域**
 
-使用`var`在一个函数内部定义一个变量，该变量将在函数退出时被销毁：
-
-```
-function test() {
-    var message = "hi"; //局部变量
-}
-test();
-console.log(message); //出错
-```
+使用`var`在一个函数内部定义一个变量，该变量将在函数退出时被销毁。
 
 但在函数内定义变量时省略 `var` 操作符，可以创建一个全局变量：
 
-```
-function test() {
-    message = "hi"; //全局变量
-}
-test();
-console.log(message); //输出hi
-```
-
-定义多个变量：
-
-```
-var name = "Hari Seldon", found = false, age = 29;
-```
+可以使用逗号分隔以同时定义多个变量。
 
 **2. var声明提升**
 
@@ -309,19 +289,13 @@ var name = "Hari Seldon", found = false, age = 29;
 
 另外，反复多次使用 `var` 声明同一个变量也没有问题。
 
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter3/Var)查看示例代码。
+
 ### 'let' Declarations
 
 `let` 跟 `var` 的作用差不多，但有着非常重要的区别。
 
 最明显的区别是， `let` 声明的范围是块作用域，而 `var` 声明的范围是函数作用域。
-
-```
-if (true) {
-    let name = "Hari Sheldon";
-    console.log(name); //Hari Sheldon
-}
-console.log(name); //ReferenceError: name undifined
-```
 
 `let` 不允许同一块作用域中出现冗余声明。
 
@@ -337,17 +311,117 @@ console.log(name); //ReferenceError: name undifined
 
 有别于 `var` 关键字，使用 `let` 在全局作用域中声明的变量不会成为 `window` 对象的属性。
 
-```
-var age = 29;
-console.log(window.age); //29
-
-let job = "scientist";
-console.log(window.scientist); //undefined
-```
-
 但 `let` 声明仍然是在全局作用域中发生的，相应变量会在页面的生命周期内存续。
 
 **3. 条件声明**
 
+因为 `let` 的作用域是块，所以不可能检查前面十分已经使用过同名变量，同时也就不可能在没有声明的情况下使用它。
+
+使用 `try/catch` 语句或 `typeof` 操作符也不能解决，因为条件块中 `let` 声明的作用域仅限于该块。
+
+所以，对于 `let` 这个新的ES6声明关键字，不能依赖条件声明模式。
+
+**4. for循环中的let声明**
+
+for循环定义的 `var` 迭代变量会渗透到循环体外部， `let`变量则不会：
+
+在使用 `var` 时，最常见的问题就是对迭代变量的奇特声明和修改：
+
+```
+for (var k = 0; k < 5; ++k) {
+    setTimeout(() => console.log(k), 0);
+} //预期输出是0、1、2、3、4，但实际会输出5、5、5、5、5
+```
+
+而在使用 `let` 声明迭代变量时，JavaScript引擎在后台会为每个迭代循环声明一个新的迭代变量。所以 `console.log` 输出的是我们期望的值：
+
+```
+for (let l = 0; l < 5; ++l) {
+    setTimeout(() => console.log(l), 0);
+} //输出0、1、2、3、4
+```
+
+> `setTimeout` 函数的API说明可参考[这里](https://developer.mozilla.org/zh-CN/docs/Web/API/setTimeout)。
+
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter3/Let)查看示例代码。
 
 ### 'const' Declarations
+
+`const` 的行为与 `let` 基本相同，唯一一个重要区别是用它声明变量时必须同时初始化变量，且尝试修改 `const` 声明的变量会导致运行时错误。
+
+`const` 声明的限制只适用于它指向的变量的引用。如果 `const` 变量引用的是一个对象，那么修改该对象内部的属性并不违反 `const` 的限制。
+
+不能用 `const` 来声明迭代变量。
+
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter3/Const)查看示例代码。
+
+### Declaration Styles and Best Practices
+
+**1. 不使用var。**
+
+**2. const优先，let次之。**
+
+## Data Types
+
+ECMAScript的6种简单数据类型（也称为**原始类型**）：
+
+- Undefined
+- Null
+- Bollean
+- Number
+- String
+- Symbol
+
+1种复杂数据类型：
+
+- Object
+
+### The `typeof` Operator
+
+`typeof` 语法：
+
+```
+typeof [变量|字面量|函数];
+```
+
+> 注意：函数在ECMAScript中被认为是对象，并不代表一种数据类型。为此，有必要通过 `typeof` 操作符来区分函数和其他对象。
+
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter3/TypeOf)查看示例代码。
+
+### The Undefined Type
+
+`var` 或 `let` 未初始化时，其类型值为 `undefined`。
+
+包含 `undefined` 值得变量并不等同于未定义变量。
+
+`undefined` 是一个假值。因此，可以使用布尔测试的方式检测变量是否被赋值。
+
+点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter3/Undefined)查看示例代码。
+
+### The Null Type
+
+逻辑上，`null` 值表示一个空对象指针。
+
+`undefined` 值是由 `null` 值派生而来的，因此ECMAScript-262将它们定义为表面上相等。
+
+`null` 也是一个假值。
+
+### The Boolean Type
+
+`Boolean` 类型有两个字面值：`true` 和 `false`。
+
+其他ECMAScript类型的值都有相应布尔值的等价形式。要将一个其他类型的值转换未布尔值，可以调用特定的 `Boolean()` 转型函数。
+
+不同类型与布尔值之间的转换规则：
+
+
+| DATA TYPE | VALUES CONVERTED TO TRUE | VALUES CONVERTED TO FALSE |
+| --- | --- | --- |
+| Boolean | true | false |
+| String | Any nonempty string | "" (empty string) |
+| Number | Any nonzero number (including infinity) | 0, NaN |
+| Object | Any object | null |
+| Undefined | n/a | undefined |
+
+`if` 等流控制语句会自动执行其他类型值到布尔值的转换。
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+</head>
+
+<body>
+</body>
+<script>
+    for (var i = 0; i < 5; i++) {
+        //循环逻辑
+    }
+    console.log(i);//5
+
+    for (let j = 0; j < 5; j++) {
+        //循环逻辑
+    }
+    // console.log(j);//ReferenceError: j没有定义
+
+    for (var k = 0; k < 5; ++k) {
+        setTimeout(() => console.log(k), 0);
+    } //预期输出是0、1、2、3、4，但实际会输出5、5、5、5、5
+
+    for (let l = 0; l < 5; ++l) {
+        setTimeout(() => console.log(l), 0);
+    } //输出0、1、2、3、4
+</script>
+
+</html>
