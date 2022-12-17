@@ -386,7 +386,7 @@ typeof [变量|字面量|函数];
 
 > 注意：函数在ECMAScript中被认为是对象，并不代表一种数据类型。为此，有必要通过 `typeof` 操作符来区分函数和其他对象。
 
-点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter3/TypeOf)查看示例代码。
+点击[这里](https://github.com/janwee-sha/hello-javascript/blob/main/Chapter3/DataTypes/TypeOfOperator.html)查看示例代码。
 
 ### The Undefined Type
 
@@ -396,7 +396,7 @@ typeof [变量|字面量|函数];
 
 `undefined` 是一个假值。因此，可以使用布尔测试的方式检测变量是否被赋值。
 
-点击[这里](https://github.com/janwee-sha/hello-javascript/tree/main/Chapter3/Undefined)查看示例代码。
+点击[这里](https://github.com/janwee-sha/hello-javascript/blob/main/Chapter3/DataTypes/UndefinedType.html)查看示例代码。
 
 ### The Null Type
 
@@ -405,6 +405,8 @@ typeof [变量|字面量|函数];
 `undefined` 值是由 `null` 值派生而来的，因此ECMAScript-262将它们定义为表面上相等。
 
 `null` 也是一个假值。
+
+点击[这里](https://github.com/janwee-sha/hello-javascript/blob/main/Chapter3/DataTypes/NullType.html)查看示例代码。
 
 ### The Boolean Type
 
@@ -424,4 +426,121 @@ typeof [变量|字面量|函数];
 | Undefined | n/a | undefined |
 
 `if` 等流控制语句会自动执行其他类型值到布尔值的转换。
+
+### The Number Type
+
+Number类型使用IEEE 754格式表示整数和浮点值（在某些语言中也叫双精度值）。不同的数值类型相应地也有不同的数值字面量格式。
+
+**Integer**
+
+- Decimal Integer——最基本的数值字面量是十进制整数，直接写出来即可。
+- Octal Integer——八进制字面量的第一个数字必须是0，后接相应的八进制数值，若字面量中包含的数字超出了应有的范围，则会忽略前缀0，后面的数字序列被当作十进制数。ES6中的八进制通过前缀0o来标识；严格模式下，前缀0会被视为语法错误，若要表示八进制值，应该使用前缀0o。
+- Hexadecimal Integer——To create a hexadecimal literal, you must make the first two characters `0x` , followed by any number of hexadecimal digits (0 through 9, and A through F).
+
+> Note: 由于JavaScript保存数值的方式，实际上存在正零（+0）和负零（-0）。两者在任何情况下都被认为是等同的。
+
+**Floating-Point Values**
+
+要定义浮点值，数值中必须包含小数点，而且小数点后必须至少有一个数字。小数点前面的整数不是必需的，但推荐加上。
+
+存储浮点值使用的内存空间是存储整数值的两倍，所以ECMAScript总是尽量把值转换为整数。小数点后面没有数字或只跟着0的情况下，该浮点值会被转换为整数值。
+
+对于非常大或非常小的数值，浮点值可以用科学计数法来表示。ECMAScript中科学计数法的格式为一个数值（整数或浮点数）后跟一个大写或小写的字母e，再加上一个要乘的10的次幂数。
+
+默认情况下，ECMAScript会将小数点后至少包含6个零的浮点值转换为科学计数法。
+
+浮点值的精确度最高可达17位小数，但在算术计算中远不如整数精确。例如，0.1加0.2得到的不是0.3，而是0.30000000000000004。
+
+**Range of Values**
+
+ECMAScript并不支持表示所有数值。最小数值保存在 `Number.MIN_VALUE` 中，这个值在多数浏览器中是 `5e-324`；最大数值保存在 `Number.MAX_VALUE` 中，这个值在多数浏览器中是 `1.7976931348623157e+308`。
+
+超过JavaScript可表示范围的数值会被自动转换位一个特殊的 `Infinity` 值，负数为 `-Infinity`，正数为 `Infinity`。
+
+`Infinity` 值不能再做进一步的计算。可以使用 `isFinite()` 函数测试某数值是否无穷数。
+
+**3. NaN**
+
+有一个特殊的数值叫 `NaN` ，意思是“Not a Number”，用以表示本来要返回数值的操作失败了。
+
+任何涉及 `NaN` 的操作始终返回 `NaN`。`NaN` 不等于包括 `NaN` 在内的任何值。
+
+ECMAScript提供了 `isNaN()` 函数，用于判断数值是否“不是数值”。该函数会尝试将给定参数转换为一个数值。不能转换的会返回 `false`。
+
+**4. 数值转换**
+
+有3个函数可以将非数值转换为数值： `Number()`、`parseInt()` 和 `parseFloat()`。`Number()` 参数可以是任何类型，后两者用于将字符串转换为数值。
+
+点击[这里](https://github.com/janwee-sha/hello-javascript/blob/main/Chapter3/DataTypes/NumberType.html)查看示例代码。
+
+### The String Type
+
+字符串数据类型表示零或多个16位Unicode字符序列。字符串可以用双引号（"）、单引号（'）或反引号（`）标识。
+
+**Character Literals**
+
+Character literals to represent nonprintable or otherwise useful characters:
+
+
+| LITERAL | MEANING |
+| --- | --- |
+| \\n | New line |
+| \\t | Tab |
+| \\b | Backspace |
+| \\r | Carriage return |
+| \\f | Form feed |
+| \\\\ | Backslash |
+| \\' | Single quote |
+| \\" | Double quote |
+| \\xnn | A character represented by hexadecimal code `nn` |
+| \\unnnn | A unicode character represented by the hexadecimal code `nnnn` |
+
+
+**The Nature of Strings**
+
+ECMAScript中的字符串是不可变的。修改某个变量中的字符串值实际上是将包含新值的另一个字符串保存到该变量。
+
+**Converting to a String**
+
+- `toString()` 函数。`toString()` 多数情况下不接受任何参数，但对数值调用这个方法时，`toString()` 可以接收一个底数参数，即以什么为底数来输出数值的字符串表示。
+- `String()`函数。若参数值有`toString()`方法，则调用该方法；若为`null`/`undefined`，则返回`null`/`undefined`。
+
+**Template Literals**
+
+ECMAScript 6新增了使用模板字面量定义字符串的能力。模板字面量保留换行字符，可以跨行定义字符串。
+
+模板字面量在定义模板时特别有用。如下面的HTML模板：
+
+```
+let pageHtml = `
+    <div>
+        <a href="#">A link</a>
+    </div>`;
+```
+
+**Interpolation**
+
+模板字面量最常用的一个特性时支持字符串插值，也就是可以在一个连续定义中插入一个或多个值。
+
+字符串插值通过在`${}`中使用一个JavaScript表达式实现。
+
+```
+let string = `${ a } to the ${ b } power is ${ a * b }`;
+```
+
+**Template Literal Tag Functions**
+
+> To be continued
+
+**Raw Strings**
+
+> To be continued
+
+### The Symbol Type
+
+> To be continued
+
+### The Object Type
+
+> To be continued
 

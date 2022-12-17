@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+</head>
+
+<body>
+</body>
+<script>
+    let intNum = 55, octalNum1 = 070, octalNum2 = 079, hexNum = 0xA;
+    console.log(intNum, //55
+        octalNum1, //56
+        octalNum2, //Invalid octal number
+        hexNum); //10
+
+    let floatNum1 = 1.1, floatNum2 = .1, floatNum3 = 1., floatNum4 = 10.0, floatNum5 = 3.125e7;
+    console.log(floatNum1, //1.1
+        floatNum2, //0.1
+        floatNum3, //1
+        floatNum4, //10
+        floatNum5, //31250000
+        0.1 + 0.2); //0.30000000000000004
+
+    console.log(isFinite(Number.MAX_VALUE + 1)); //true
+
+    console.log(0 / 0); //NaN
+    console.log(5 / 0); //Infinity
+    console.log(-5 / 0); //-Infinity
+
+    console.log(NaN == NaN); //false
+
+    console.log(isNaN(NaN)); //true
+    console.log(isNaN(10)); //false
+    console.log(isNaN("010")); //false
+    console.log(isNaN("0o23")); //false
+    console.log(isNaN("0xA")); //false
+    console.log(isNaN(true)); //false
+
+    console.log(Number(true)); //1
+</script>
+
+</html>

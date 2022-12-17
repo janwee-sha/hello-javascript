@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+</head>
+
+<body>
+</body>
+<script>
+    let string1 = "\x3B";
+    console.log(string1); //;
+    console.log(string1.length); //1
+    let string2 = "Sigma: \u03a3";
+    console.log(string2); //Σ
+    console.log(string2.length); //8
+
+    let pageHtml = `
+    <div>
+        <a href="#">A link</a>
+    </div>`;
+    console.log(pageHtml);
+
+    let a = 5;
+    let b = 'second';
+    let interpolated = `${a} to the ${b} power is ${a * a}`;
+    console.log(interpolated);
+
+</script>
+
+</html>
